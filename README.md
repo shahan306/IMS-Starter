@@ -1,13 +1,30 @@
 Coverage: 34%
 # Project Title
 
-One Paragraph of project description goes here
+This is my assignment from week 5, which highlights the abilities I have developed
+while attending the QA Academy. It controls a MySQL database and is a Java-based
+inventory management system. On database items in four separate tables, users
+can carry out fundamental CRUD operations. Orders are accepted by the system,
+which also generates a total price, based on the item IDs and quantities. which
+later can be used or to be viewed or edited. 
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
+
+Softwares used to make the app and project planing application.
+
+•Java 17 JDK
+•Maven
+•Git for versioning
+•git hub
+•jira
+•SQL
+•Eclipse IDE
+
+
 
 What things you need to install the software and how to install them
 

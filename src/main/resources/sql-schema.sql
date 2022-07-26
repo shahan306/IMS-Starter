@@ -1,12 +1,38 @@
-drop schema ims;
+drop database if exists InventorySystemManagerProject;
+CREATE DATABASE IF NOT EXISTS InventorySystemManagerProject;
+USE InventorySystemManagerProject;
 
-CREATE SCHEMA IF NOT EXISTS `ims`;
-
-USE `ims` ;
-
-CREATE TABLE IF NOT EXISTS `ims`.`customers` (
-    `id` INT(11) NOT NULL AUTO_INCREMENT,
-    `first_name` VARCHAR(40) DEFAULT NULL,
-    `surname` VARCHAR(40) DEFAULT NULL,
-    PRIMARY KEY (`id`)
+CREATE TABLE customers (
+	id INT AUTO_INCREMENT,
+    first_name varchar(50),
+    surname varchar(50),
+    PRIMARY KEY (id)
+    );
+    
+CREATE TABLE items (
+	id INT AUTO_INCREMENT,
+    item_name varchar(50),
+    price decimal(8,0),
+    PRIMARY KEY (id)
+    );
+    
+    
+CREATE TABLE orders (
+	id int AUTO_INCREMENT,
+    customer_id INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (customer_id) 
+		REFERENCES customers(id)
+    );
+    
+CREATE TABLE order_items (
+    id INT AUTO_INCREMENT,
+    item_id INT,
+    quantity INT,
+    order_id INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (order_id)
+        REFERENCES orders(id),
+    FOREIGN KEY (item_id)
+        REFERENCES items(id)
 );

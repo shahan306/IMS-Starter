@@ -20,7 +20,7 @@ public class IMS {
 
 	public IMS() {
 		this.utils = new Utils();
-		final CustomerDAO custDAO = new CustomerDAO();
+		final CustomerDAO custDAO = new CustomerDAO(); 
 		this.customers = new CustomerController(custDAO, utils);
 	}
 

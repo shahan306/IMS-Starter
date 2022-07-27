@@ -2,23 +2,21 @@ package com.qa.ims.persistence.domain;
 
 import java.util.Objects;
 
-public class Order {
+public class Orders {
 	
 	private Long id;
 	private String customer_id;
 	
 	
 	// constructor with id
-	public Order(Long id, String customer_id) {
-		super();
-		this.id = id;
-		this.customer_id = customer_id;
+	public Orders(long id, String customer_id) {
+		this.setId (id);
+		this.setCustomer_id (customer_id);
 	}
 
 	//constructor without id
-	public Order(String customer_id) {
-		super();
-		this.customer_id = customer_id;
+	public Orders(String customer_id) {
+		this.setCustomer_id (customer_id);
 	}
 	// getters and setters
 	public Long getId() {
@@ -57,17 +55,7 @@ public class Order {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Order other = (Order) obj;
+		Orders other = (Orders) obj;
 		return Objects.equals(customer_id, other.customer_id) && Objects.equals(id, other.id);
 	}
-	
-	
-
-	
-		
-		
-		
-		
-	
-	
 }

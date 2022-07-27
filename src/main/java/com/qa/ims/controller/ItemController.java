@@ -1,78 +1,63 @@
 package com.qa.ims.controller;
 
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.dao.ItemDAO;
-import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.utils.Utils;
 
-  
-  
-
 public class ItemController implements CrudController<Item> {
-
+	
 	public static final Logger LOGGER = LogManager.getLogger();
-
+	
 	private ItemDAO itemDAO;
 	private Utils utils;
 
-	public ItemController(ItemDAO ItemDAO, Utils utils) {
+	public ItemController(ItemDAO itemDAO, Utils utils) {
 		super();
 		this.itemDAO = itemDAO;
 		this.utils = utils;
 	}
-	
+
 	@Override
 	public List<Item> readAll() {
-		// TODO Auto-generated method stub
-		List<Item> items = itemDAO.readAll();
+		List<Item> items= itemDAO.readAll();
 		for (Item item : items) {
 			LOGGER.info(item);
 		}
 		return items;
-	
-		
 	}
 
 	@Override
 	public Item create() {
-		// TODO Auto-generated method stub
-		LOGGER.info("Enter the item name");
+		LOGGER.info("Enter a item");
 		String itemName = utils.getString();
 		LOGGER.info("Enter a price");
-		Float price = utils.getFloat();
+		float price = utils.getFloat();
 		Item item = itemDAO.create(new Item(itemName, price));
-		LOGGER.info("Customer created");
+		LOGGER.info(" created");
 		return item;
 	}
 
 	@Override
 	public Item update() {
-		// TODO Auto-generated method stub
-		LOGGER.info("Please input the id number of item which you would like to edit");
+		LOGGER.info("Enter the id of the item you would like to update");
 		Long id = utils.getLong();
-		LOGGER.info("Enter the item number");
+		LOGGER.info("Please enter a item name");
 		String itemName = utils.getString();
-		LOGGER.info("Enter a price");
-		Float price = utils.getFloat();
+		LOGGER.info("Please enter a price");
+		float price = utils.getFloat();
 		Item item = itemDAO.update(new Item(id, itemName, price));
-		LOGGER.info("Customer has been Updated");
+		LOGGER.info("Customer Updated");
 		return item;
-		
 	}
 
 	@Override
 	public int delete() {
-		// TODO Auto-generated method stub
-		LOGGER.info("Please enter the id of the item you would like to delete");
+		LOGGER.info("Enter the id of the item you would like to delete");
 		Long id = utils.getLong();
 		return itemDAO.delete(id);
-		
 	}
-	
-
 }

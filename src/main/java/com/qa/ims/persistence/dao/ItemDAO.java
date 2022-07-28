@@ -18,6 +18,7 @@ public class ItemDAO implements Dao<Item> {
 
     public static final Logger LOGGER = LogManager.getLogger();
     
+    
     @Override
     public Item modelFromResultSet(ResultSet resultSet) throws SQLException {
     	long id = resultSet.getLong("id");
@@ -26,6 +27,8 @@ public class ItemDAO implements Dao<Item> {
 		return new Item(id, itemName, price);
     }
 
+    
+    
     @Override
     public List<Item> readAll() {
         try (Connection connection = DBUtils.getInstance().getConnection();
@@ -43,6 +46,7 @@ public class ItemDAO implements Dao<Item> {
         return new ArrayList<>();
     }
     
+    
     private Item readLatest() {
     	try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
@@ -56,6 +60,7 @@ public class ItemDAO implements Dao<Item> {
  		return null;
  	}
 
+    
 
     @Override
     public Item create(Item item) {
@@ -73,6 +78,7 @@ public class ItemDAO implements Dao<Item> {
         return null;
     }
 
+    
     @Override
     public Item read(Long id) {
     	try (Connection connection = DBUtils.getInstance().getConnection();
@@ -89,6 +95,7 @@ public class ItemDAO implements Dao<Item> {
         return null;
     }
  
+    
 	@Override
     public Item update(Item item) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -106,6 +113,7 @@ public class ItemDAO implements Dao<Item> {
         return null;
     }
 
+	
     @Override
     public int delete(long id) {
     	try (Connection connection = DBUtils.getInstance().getConnection();

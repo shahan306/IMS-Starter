@@ -1,6 +1,7 @@
 package com.qa.ims.controller;
 
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,54 +10,62 @@ import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.Utils;
 
 public class OrderController implements CrudController<Order> {
+	
+	public static final Logger LOGGER = LogManager.getLogger();
+	
+	private OrderDAO orderDAO;
+	private Utils utils;
+	
+	public OrderController(OrderDAO orderDAO, Utils utils) {
+		super();
+		this.orderDAO = orderDAO;
+		this.utils = utils;
+	}
 
-    public static final Logger Logger = LogManager.getLogger();
+	@Override
+	public List<Order> readAll() {
+		List<Order> orders = orderDAO.readAll();
+		for (Order order : orders) {
+			LOGGER.info(order);
+		}
+		return orders;
+	}
 
-    private OrderDAO orderDAO;
-    private Utils utils;
+	@Override
+	public Order create() {
+		LOGGER.info("Please Enter The Customer ID!:");
+		Long customerId = utils.getLong();
+		LOGGER.info("Please Enter The Item ID!:");
+		Long itemId = utils.getLong();
+		LOGGER.info("Please Enter The Quantity?:");
+		Long qty = utils.getLong();
+		Order order = orderDAO.create(new Order(customerId, itemId, qty));
+		LOGGER.info("Order Has Been Created");
+		return order;
+	}
 
-    public OrderController(OrderDAO orderDAO, Utils utils) {
-        super();
-        this.orderDAO = orderDAO;
-        this.utils = utils;
-    }
+	@Override
+	public Order update() {
+		LOGGER.info("Please Enter The ID oF The Order You Would Like To Update: :) ");
+		Long orderId = utils.getLong();
+		LOGGER.info("Please Enter The New Item ID: ");
+		Long itemId = utils.getLong();
+		LOGGER.info("Enter A quantity: ");
+		Long qty = utils.getLong();
+		LOGGER.info("Please Enter The Customer ID");
+		Long custId = utils.getLong();
+		Order order = orderDAO.update(new Order(orderId, custId, itemId, qty));
+		return order;
+	}
 
-    @Override
-    public List<Order> readAll() {
-        List<Order> orders= orderDAO.readAll();
-        for (Order order : orders) {
-            Logger.info(order);
-        }
-        return null;
-    }
-
-    @Override
-    public Order create() {
-        Logger.info("Enter a an customer ID :)");
-        Long customer_Id = utils.getLong();
-        Order order = orderDAO.create(new Order(customer_Id));
-        Logger.info(" created");
-        return order;
-    }
-
-    public Order update() {
-        Logger.info("Enter the id of the orders you would like to update");
-        Long id = utils.getLong();
-        Logger.info("Please enter a customer id");
-        long newcustomer_id = utils.getLong();
-        Order order = orderDAO.read(id);
-        order.setCustomer_id(newcustomer_id);
-        order = orderDAO.update(order);
-        Logger.info("Customer Updated");
-        return order;
-    }
-    @Override
-    public int delete() {
-        Logger.info("Enter the id of the order you would like to delete");
-        Long id = utils.getLong();
-        Logger.info("ORDER DELETED! :)");
-       
-        return orderDAO.delete(id);
-    }
+	@Override
+	public int delete() {
+		LOGGER.info("Please Enter The ID Of The Order You Want To Delete");
+		Long orderId = utils.getLong();
+		LOGGER.info("Order Has Been Deleted");
+		return orderDAO.delete(orderId);
+	}
 
 }
+
+

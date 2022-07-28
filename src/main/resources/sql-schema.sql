@@ -1,6 +1,6 @@
-drop database if exists InventorySystemManagerProject;
-CREATE DATABASE IF NOT EXISTS InventorySystemManagerProject;
-USE InventorySystemManagerProject;
+drop database if exists InventorySystemManager;
+CREATE DATABASE IF NOT EXISTS InventorySystemManager;
+USE InventorySystemManager;
 
 CREATE TABLE customers (
 	id INT AUTO_INCREMENT,
@@ -16,25 +16,14 @@ CREATE TABLE items (
     PRIMARY KEY (id)
     );
     
-    
+
 CREATE TABLE orders (
-	id int AUTO_INCREMENT,
-    customer_id INT,
-    total_price decimal(8,0),
-    quantity INT,
-    PRIMARY KEY (id),
-    FOREIGN KEY (customer_id) 
-		REFERENCES customers(id)
-    );
-    
-CREATE TABLE order_items (
-    id INT AUTO_INCREMENT,
-    item_id INT,
-    quantity INT,
-    order_id INT,
-    PRIMARY KEY (id),
-    FOREIGN KEY (order_id)
-        REFERENCES orders(id),
-    FOREIGN KEY (item_id)
-        REFERENCES items(id)
+   order_id INT AUTO_INCREMENT,
+   id INT(11),
+   item_id INT(11),
+   qty INT (10),
+   total_cost DOUBLE(12, 2),
+   PRIMARY KEY (order_id),
+   FOREIGN KEY (id) REFERENCES customers(id),
+   FOREIGN KEY (item_id) REFERENCES items(item_id)
 );

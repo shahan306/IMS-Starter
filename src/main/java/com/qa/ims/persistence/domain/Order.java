@@ -5,17 +5,17 @@ import java.util.Objects;
 public class Order {
 	
 	private Long id;
-	private String customer_id;
+	private Long customer_id;
 	
 	
-	// constructor with id
-	public Order(long id, String customer_id) {
+	// constructor with id 
+	public Order(long id, Long customer_id) {
 		this.setId (id);
 		this.setCustomer_id (customer_id);
 	}
 
 	//constructor without id
-	public Order(String customer_id) {
+	public Order(Long customer_id) {
 		this.setCustomer_id (customer_id);
 	}
 	// getters and setters
@@ -27,11 +27,11 @@ public class Order {
 		this.id = id;
 	}
 
-	public String getCustomer_id() {
+	public Long getCustomer_id() {
 		return customer_id;
 	}
 
-	public void setCustomer_id(String customer_id) {
+	public void setCustomer_id(Long customer_id) {
 		this.customer_id = customer_id;
 	}
 

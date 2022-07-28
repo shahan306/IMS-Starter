@@ -11,6 +11,8 @@ public class Order {
 	private Double totalCost;
 	private String itemName;
 	private String custName;
+	
+	
 // constructors from source and with fields 
 	public Order(Long orderId, Long itemId, Long qty, Double totalCost, String custName, String itemName) {
 		this.setOrderId(orderId);

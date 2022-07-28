@@ -32,7 +32,7 @@ public class OrderController implements CrudController<Order> {
 
     @Override
     public Order create() {
-        Logger.info("Enter a order ID");
+        Logger.info("Enter a an customer ID :)");
         Long customer_Id = utils.getLong();
         Order order = orderDAO.create(new Order(customer_Id));
         Logger.info(" created");

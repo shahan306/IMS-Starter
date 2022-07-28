@@ -20,6 +20,8 @@ CREATE TABLE items (
 CREATE TABLE orders (
 	id int AUTO_INCREMENT,
     customer_id INT,
+    total_price decimal(8,0),
+    quantity INT,
     PRIMARY KEY (id),
     FOREIGN KEY (customer_id) 
 		REFERENCES customers(id)

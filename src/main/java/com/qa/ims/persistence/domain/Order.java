@@ -59,3 +59,4 @@ public class Order {
 		return Objects.equals(customer_id, other.customer_id) && Objects.equals(id, other.id);
 	}
 }
+	

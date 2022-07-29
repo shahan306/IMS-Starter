@@ -57,6 +57,9 @@
 	</dependencies>
 
 	<build>
+
+
+
 		<plugins>
 			<!-- Creates a jar for the code (does not contain other dependencies which 
 				are needed for the project to run out of the box) -->
@@ -76,6 +79,8 @@
 
 			<!-- Creates a "fat jar" with jar-with-dependencies at the end of the 
 				project jar -->
+				
+				
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -108,6 +113,7 @@
 				</executions>
 			</plugin>
 
+
 			<!-- Plugin for code coverage. Useful as sonarqube integrates well with 
 				jacoco -->
 			<plugin>
@@ -120,6 +126,8 @@
 							<goal>prepare-agent</goal>
 						</goals>
 					</execution>
+					
+					
 					<!-- attached to Maven test phase -->
 					<execution>
 						<id>report</id>
@@ -130,6 +138,8 @@
 					</execution>
 				</executions>
 			</plugin>
+
+
 
 			<!-- Plugin to send files -->
 			<plugin>

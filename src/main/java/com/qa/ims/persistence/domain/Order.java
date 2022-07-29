@@ -13,7 +13,7 @@ public class Order {
 	private String custName;
 	
 	
-// constructors from source and with fields 
+
 	public Order(Long orderId, Long itemId, Long qty, Double totalCost, String custName, String itemName) {
 		this.setOrderId(orderId);
 		this.setItemId(itemId);
@@ -23,13 +23,13 @@ public class Order {
 		this.setItemName(itemName);
 	}
 
-	// constructors from source and with fields 
+	
 	public Order(Long custId, Long itemId, Long qty) {
 		this.setCustomerId(custId);
 		this.setItemId(itemId);
 		this.setQty(qty);
 	}
-	// constructors from source and with fields 
+	
 	public Order(Long orderId, Long custId, Long itemId, Long qty) {
 		this.setOrderId(orderId);
 		this.setCustomerId(custId);
@@ -37,7 +37,7 @@ public class Order {
 		this.setQty(qty);
 	}
 	
-	// getters and setter from source 
+	// getters and setter 
 	public Long getOrderId() {
 		return orderId;
 	}
@@ -96,12 +96,12 @@ public class Order {
 	public void setCustName(String custName) {
 		this.custName = custName;
 	}
-
+// TO STRING FROM source
 	@Override
 	public String toString() {
 		return "id: " + orderId + " first name: " + custName + " item: " + itemName + " Quantity: " + qty + " Total Price: " + totalCost;
 	}
-
+// hashcode from source 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -115,7 +115,7 @@ public class Order {
 		result = prime * result + ((qty == null) ? 0 : qty.hashCode());
 		return result;
 	}
-
+	// boolean from source 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -17,6 +17,7 @@ public class OrderController implements CrudController<Order> {
 	private Utils utils;
 	
 	public OrderController(OrderDAO orderDAO, Utils utils) {
+		
 		super();
 		this.orderDAO = orderDAO;
 		this.utils = utils;
@@ -33,33 +34,37 @@ public class OrderController implements CrudController<Order> {
 
 	@Override
 	public Order create() {
-		LOGGER.info("Please Enter The Customer ID!:");
-		Long customerId = utils.getLong();
+		
+		LOGGER.info("Please Enter The customeromer ID!:");
+		Long custId = utils.getLong();
 		LOGGER.info("Please Enter The Item ID!:");
 		Long itemId = utils.getLong();
 		LOGGER.info("Please Enter The Quantity?:");
 		Long qty = utils.getLong();
-		Order order = orderDAO.create(new Order(customerId, itemId, qty));
+		Order order = orderDAO.create(new Order(custId, itemId, qty));
 		LOGGER.info("Order Has Been Created");
 		return order;
 	}
 
 	@Override
 	public Order update() {
+		
 		LOGGER.info("Please Enter The ID oF The Order You Would Like To Update: :) ");
 		Long orderId = utils.getLong();
 		LOGGER.info("Please Enter The New Item ID: ");
 		Long itemId = utils.getLong();
 		LOGGER.info("Enter A quantity: ");
 		Long qty = utils.getLong();
-		LOGGER.info("Please Enter The Customer ID");
+		LOGGER.info("Please Enter The customeromer ID");
 		Long custId = utils.getLong();
 		Order order = orderDAO.update(new Order(orderId, custId, itemId, qty));
 		return order;
 	}
 
 	@Override
+	
 	public int delete() {
+		
 		LOGGER.info("Please Enter The ID Of The Order You Want To Delete");
 		Long orderId = utils.getLong();
 		LOGGER.info("Order Has Been Deleted");

@@ -1,4 +1,4 @@
-Coverage: 34%
+Coverage: 60% pottentaly could be 70/80 once i fix my errors in sql
 # Project Title
 
 This is my assignment from week 5, which highlights the abilities I have developed
@@ -10,7 +10,8 @@ later can be used or to be viewed or edited. 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for 
+development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
@@ -25,49 +26,49 @@ Softwares used to make the app and project planing application.
 •Eclipse IDE
 
 
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+use the qa template provided to you repo
 
-Say what the step will be
+To ensure that all dependencies are installed locally after being used, run mvn install.
 
-```
-Give the example
-```
+Once mvn package clean has been executed, a jar file containing dependencies will be created in the target folder.
 
-And repeat
+After that, you can either navigate to the project in cmd, git bash, or any other terminal and execute java -jar "file name" to start the application. Alternatively, you may right-click the fat jar in the project explorer and choose Show in > Terminal
 
-```
-until finished
-```
+customer is already done but you need to complete item first then you can make an order and have its functionality,
 
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
+Right-click on the project and select "coverage as" or "junit test" to launch the tests.
 
-### Unit Tests 
+Tests There are three distinct test folders: one each for domains, the DAO, and controllers.
 
-Explain what these tests test, why and how to run them
+In the controller testing, Mockito is used. This makes it possible to do simulation tests.
 
-```
-Give an example
-```
+``@Test public void testCreate() { final String I_NAME = "shahan"; final Double I_PRICE = 4.2; 
+final Item created = new Item(I_NAME, I_PRICE);
 
-### Integration Tests 
-Explain what these tests test, why and how to run them
+	Mckito.when(utils.getString()).thenReturn(I_NAME);
+	Mockito.when(utils.getDouble()).thenReturn(I_PRICE);
+	Mockito.when(dao.create(created)).thenReturn(created);
 
-```
-Give an example
-```
+	assertEquals(created, controller.create());
+
+	Mockito.verify(utils, Mockito.times(1)).getString();
+	Mockito.verify(utils, Mockito.times(1)).getDouble();
+	Mockito.verify(dao, Mockito.times(1)).create(created);
+}
+The system under test is mocked or mimicked. As the create method in the DAO, which communicates 
+with the database, is being tested, this would be an example of integration testing.
+
+@Test
+public void testCreate() {
+	final Item created = new Item(2L, "Paper", 1.2);
+	assertEquals(created, itemDAO.create(created));
+}
+``
 
 ### And coding style tests
 
@@ -79,7 +80,38 @@ Give an example
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+You must connect this project to a database before you can launch it.
+In this situation, I would advise establishing a connection to a MySQL database.
+You must run the following commands when logged into MySQL in order to set up your database:
+
+CREATE DATABASE IF NOT EXISTS InventorySystemManager;
+USE InventorySystemManager;
+
+CREATE TABLE customers (
+	id INT AUTO_INCREMENT,
+    first_name varchar(50),
+    surname varchar(50),
+    PRIMARY KEY (id)
+    );
+    
+CREATE TABLE items (
+	id INT AUTO_INCREMENT,
+    item_name varchar(50),
+    price decimal(8,0),
+    PRIMARY KEY (id)
+    );
+    
+
+CREATE TABLE orders (
+   order_id INT AUTO_INCREMENT,
+   id INT(11),
+   item_id INT(11),
+   qty INT (10),
+   total_cost DOUBLE(12, 2),
+   PRIMARY KEY (order_id),
+   FOREIGN KEY (id) REFERENCES customers(id),
+   FOREIGN KEY (item_id) REFERENCES items(item_id)
+);
 
 ## Built With
 
@@ -92,6 +124,7 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
+* **shahan shah** - *final work for project* - [shahan306](https://github.com/shahan306)
 
 ## License
 

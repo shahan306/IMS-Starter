@@ -47,35 +47,57 @@ Tests There are three distinct test folders: one each for domains, the DAO, and 
 
 In the controller testing, Mockito is used. This makes it possible to do simulation tests.
 
-``@Test public void testCreate() { final String I_NAME = "shahan"; final Double I_PRICE = 4.2; 
-final Item created = new Item(I_NAME, I_PRICE);
+### Unit Tests 
 
-	Mckito.when(utils.getString()).thenReturn(I_NAME);
-	Mockito.when(utils.getDouble()).thenReturn(I_PRICE);
-	Mockito.when(dao.create(created)).thenReturn(created);
-
-	assertEquals(created, controller.create());
-
-	Mockito.verify(utils, Mockito.times(1)).getString();
-	Mockito.verify(utils, Mockito.times(1)).getDouble();
-	Mockito.verify(dao, Mockito.times(1)).create(created);
-}
-The system under test is mocked or mimicked. As the create method in the DAO, which communicates 
-with the database, is being tested, this would be an example of integration testing.
+junit tests are designed to evaluate each method's functionality individually. For each method
+in the Customer, Item, Order,  for instance, tests have been developed to ensure that the getters
+and setters function properly, that objects and fields can be set to null, and many other things.
+To make sure that the application functions properly, these tests must succeed. As an illustration,
+consider the following test for the Item class' setters:
 
 @Test
-public void testCreate() {
-	final Item created = new Item(2L, "Paper", 1.2);
-	assertEquals(created, itemDAO.create(created));
+public void settersTest() {
+	assertNotNull(item.getId());
+	assertNotNull(item.getItemName());
+	assertNotNull(item.getPrice());
+	
+	item.setId(null);
+	assertNull(item.getId());
+	item.setItemName(null);
+	assertNull(item.getItemName());
+	item.setPrice(null);
+	assertNull(item.getPrice());	
 }
-``
+
+
+
+### Integration Tests
+
+For the application, Mockito has been used to create a number of integration tests. To avoid
+having to call the method being tested directly, Mockito is used to stub the methods it calls.
+This makes it possible to test more complicated methods and more successfully imitate application
+functionality. Here is a test that examines the Customer controller's readAll() method.
+
+@Test
+public void readAllTest() {
+	CustomerController customerController = new CustomerController(customerServices);
+	List<Customer> customers = new ArrayList<>();
+	customers.add(new Customer("shahan", "p"));
+	customers.add(new Customer("mo", "m"));
+	customers.add(new Customer("john", "J"));
+	Mockito.when(customerServices.readAll()).thenReturn(customers);
+	assertEquals(customers, customerController.readAll());
+}
 
 ### And coding style tests
 
 These tests are used to determine whether the industry standard for coverage is being reached.
 If it is, you must achieve an average of 80%; if less, it is not a problem because it can be
 fixed by refining the programmes. Codes may always be made simpler while programming to save
-data and more.
+data and more. You can run coding style checks by adding the project to SonarQube. This server
+will analyse the project and generate a variety of beneficial data, including code coverage.
+Additionally, it will identify and recommend patches for bugs, security holes, and "code smells"
+(maintenance problems) in the code.
 
 Examples of code :
 

@@ -3,7 +3,7 @@ Coverage: 60% pottentaly could be 70/80 once i fix my errors in sql
 Jira link:
 [shahan306](https://shahan306.atlassian.net/jira/software/projects/IMSW5/boards/4/backlog)
 
-# Project Title
+# Inventory System Manager Project
 
 This is my assignment from week 5, which highlights the abilities I have developed
 while attending the QA Academy. It controls a MySQL database and is a Java-based

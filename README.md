@@ -7,7 +7,7 @@ Jira link:
 
 This is my assignment from week 5, which highlights the abilities I have developed
 while attending the QA Academy. It controls a MySQL database and is a Java-based
-inventory management system. On database items in four separate tables, users
+inventory management system. On database items in three separate tables, users
 can carry out fundamental CRUD operations. Orders are accepted by the system,
 which also generates a total price, based on the item IDs and quantities. which
 later can be used or to be viewed or edited. 

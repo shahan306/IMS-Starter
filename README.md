@@ -72,11 +72,29 @@ public void testCreate() {
 
 ### And coding style tests
 
-Explain what these tests test and why
+These tests are used to determine whether the industry standard for coverage is being reached.
+If it is, you must achieve an average of 80%; if less, it is not a problem because it can be
+fixed by refining the programmes. Codes may always be made simpler while programming to save
+data and more.
 
-```
-Give an example
-```
+Examples of code :
+
+private Long id;
+    private String itemName;
+    private Float price;
+
+    // constructor without id from source easy to generate
+    public Item(String itemName,float price) {
+        this.setItemName (itemName);
+        this.setPrice (price);
+    }
+
+    // constructor with id from source
+    public Item(Long id, String itemName, Float price) {
+        this.id = id;
+        this.setItemName (itemName);
+        this.setPrice (price);
+    }
 
 ## Deployment
 
